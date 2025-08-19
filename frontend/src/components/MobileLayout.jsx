@@ -30,6 +30,22 @@ const MobileLayout = ({children}) => {
 
     // toggle dark mode 
 
+    const toggleDarkMode = () => {
+
+        const newMode = !isDarkMode
+        setIsDarkMode(newMode)
+
+        if (newMode) {
+            document.documentElement.classList.add('dark')
+            document.body.classList.add('dark');
+            localStorage.setItem ('theme','dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+            document.body.classList.remove('dark')
+            localStorage.getItem('theme','light')
+        }
+    }
+
 
 
   return (
