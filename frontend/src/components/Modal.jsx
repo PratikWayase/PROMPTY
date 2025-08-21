@@ -23,6 +23,51 @@ const Modal = ({ isOpen, onClose, title, children, classname = '' }) => {
 
     }, [isOpen])
 
+    // handle escaple key to close modal
+
+    useEffect (() => {
+        const handleEscape = (e) => {
+            if (e.key === 'Escape' && isOpen){
+                onclose();
+            }
+        };
+
+        window.addEventListener('keydown',handleEscape);
+        return () => window.removeEventListener('keydown',handleEscape)
+    },[isOpen,onClose])
+
+
+    // handlle click outside mode lto close 
+    useEffect (() => {
+        const handleOutsideClick = (e) => {
+            if (ModalRef.current && !modelRef.current.contains (e.target) && isOpen){
+                onclose();
+            }
+        };
+        document.addEventListener('mousedown',handleOutsideClick);
+        return () => document.removeEventListener ('mousedown',handleOutsideClick)
+
+    },[isOpen,onClose])
+
+    // focus on accesibilty - keep foucs with modal
+
+    useEffect (() => {
+        if (isOpen) {
+            const focusableElements = modelRef.current ?.querySelectorAll(
+                'button,[href],input, select,textarea,[tabindex]:not ([tabindex="-1])'
+            )
+
+            const firstElement = focusableElements?.[0];
+            if (firstElement){
+                firstElement.focus();
+            }
+        }
+
+    },[isOpen]);
+
+
+    
+
 
     return (
         <div className={` fixed inset-0 z-50 items-center justify-center transition-colors duration-300 ${animationState === 'opening' || animationState === 'open'
