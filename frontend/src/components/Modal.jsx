@@ -51,6 +51,12 @@ const Modal = ({ isOpen, onClose, title, children, classname = '' }) => {
                     </button>
                 </div>
 
+                {/* Model content */}
+                <div 
+                ref = {contentRef}
+                className='flex-1 overflow-auto p-4 will-change-scroll overscroll-contain'>
+                    {children}
+                </div>
             </div>
 
         </div>
