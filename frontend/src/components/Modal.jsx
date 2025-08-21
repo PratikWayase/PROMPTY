@@ -66,7 +66,20 @@ const Modal = ({ isOpen, onClose, title, children, classname = '' }) => {
     },[isOpen]);
 
 
-    
+    // ensure proper overflow when modal opens 
+
+    useEffect (() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+
+        } else {
+            document.body.style.overflow = '';
+        }
+
+    },[isOpen])
+
+
+    if (animationState === 'closed' && !isOpen) return null;
 
 
     return (
