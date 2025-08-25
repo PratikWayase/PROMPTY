@@ -1,8 +1,35 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { ExternalLink } from 'lucide-react'
 import ApiInsightsTooltip from './ApiInsightsTooltip'
 
 const ApiInsightsBanner = () => {
+
+
+  const [showTooltip,setShowTooltip] = useState(false);
+  const timeoutRef = useRef(null)
+  const containerRef = useRef(null);
+
+  // longer dealy b4 hide tooltip
+
+  const HOVER_DELAY = 1000;
+
+  const handleMouseEnter  = () => {
+    if (timeoutRef.current) clearTimeout (timeoutRef.current)
+      setShowTooltip(true)
+  };
+
+  const handleMouseLeave = (e) =>{
+    // check we leadine entri containerRef
+    const relatedTarget = e.relatedTarget;
+    const isSafeNode = relatedTarget instanceof Node;
+
+    if (containerRef.current && (!isSafeNode || !containerRef.current.contains (relatedTarget))){
+      timeoutRef.current = setTimeout (()=>{
+        setShowTooltip(false);
+      }, HOVER_DELAY)
+    }
+  };
+
 
 
 
@@ -11,7 +38,7 @@ const ApiInsightsBanner = () => {
 
   return (
     <div
-      ref={ }
+      ref={containerRef }
       className='hover-card relative inline-block'
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
