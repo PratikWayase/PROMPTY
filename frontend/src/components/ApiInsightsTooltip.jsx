@@ -32,21 +32,33 @@ const ApiInsightsTooltip = ({ visible, onMouseEnter, onMouseLeave }) => {
 
                     <div className=' flex items-center justify-between'>
                         <div className='flex items-center gap-2'>
-                            <Award  className ='h-3 w-3 text-purple-600 dark:text-purple-400'/>
+                            <Award className='h-3 w-3 text-purple-600 dark:text-purple-400' />
                             <span className='text-gray-800 dark:text-gray-200'> Design:</span>
                         </div>
 
                         <span className='bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-md px-1.5 py-0.5 text-xs font-bold'>
-                        B_86
+                            B_86
                         </span>
                     </div>
                     <div className='flex items-center justify-between'>
                         <div className='flex items-center gap-2'>
-                            <ShieldCheck className='h-3 w-3 text-blue-600 dark:text-blue-400'/>
+                            <ShieldCheck className='h-3 w-3 text-blue-600 dark:text-blue-400' />
                             <span className='bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-md px-1.5 py-0.5 text-xs font-bold'>
-                            B - 84</span>
-
+                                B - 84
+                            </span>
                         </div>
+                    </div>
+
+                    <div className='mt-2 pt-2 border-t border-gray-200 dark : hover-gray-700'>
+                        <a href='https://apiinsights.io/reports/f0761065-71b2-4f1a-8313-e287c9623dc3'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='inline-block w-full text-center bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 text-white py-2 px-4 rounded-md text-xs font-medium transition-colors'
+                        >
+
+                            view full API governance report here <ExternalLink className='h-3 w-3 text-white inline ml-1'></ExternalLink>
+
+                        </a>
 
                     </div>
 
@@ -57,3 +69,5 @@ const ApiInsightsTooltip = ({ visible, onMouseEnter, onMouseLeave }) => {
         </div>
     )
 }
+
+export default ApiInsightsTooltip;
