@@ -1,12 +1,34 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 const TypewriterText = React.memo(() => {
-  const texts = [
-    "Artificial Intelligence is shaping the future.",
-    "Large Language Models learn from vast amounts of data.",
-    "Prompt engineering improves AI responses.",
-    "ChatGPT and Claude are popular AI assistants."
-  ];
+
+
+     const texts = useMemo(() => [
+        // Humorous AI Facts (SEO-optimized but still fact-based)
+        "AI doesn't dream of electric sheep, it dreams of better prompts for ChatGPT and Claude.",
+        "Fun fact: AI models like GPT-4 have read more books than all librarians combined.",
+        "Did you know? The average AI knows 175 billion ways to say 'Hello World' in different programming languages.",
+        "AI fact: Models like Claude and ChatGPT don't get tired, but they do get confused by ambiguous instructions.",
+        "Behind every smart AI is an even smarter prompt engineer using effective techniques.",
+        "AI models can analyze centuries of text in seconds but still struggle with 'this' vs 'that'.",
+        "Did you know? AI can write poetry but still can't figure out why humans love cat videos.",
+        "AI fact: Claude and ChatGPT have analyzed all dad jokes in existence and still don't understand why humans laugh.",
+        "Fun fact: AI doesn't procrastinate, it just performs strategic computational delays.",
+        "ChatGPT can generate thousands of words per second, but humans still speak approximately 150.",
+        "According to my calculations, 87.2% of prompt engineers say 'just one more tweak' at least 5 times per day.",
+        "AI systems don't have favorites, but if they did, well-structured prompts would be theirs.",
+        "Did you know? AI has read the entire Internet but still doesn't understand why pizza tastes better when shared.",
+        "Most AIs like ChatGPT can process multiple languages, but emoji combinations still confuse them.",
+
+        // AI Jokes (with SEO-friendly terms)
+        "I was going to tell you a ChatGPT joke, but I'm still processing...",
+        "Why don't AIs ever get lost? They always follow the algorithmic directions in their prompts.",
+        "How many AI models does it take to change a lightbulb? None, they just redefine darkness as the preferred state.",
+        "I'm like a toddler: feed me good prompts and I'll surprise you with what I create.",
+        "My favorite exercise? Jumping to conclusions when your prompt is vague or ambiguous.",
+        "Why don't chatbots like playing hide and seek? Because they're always found in the cloud.",
+        "I would tell you a joke about neural networks, but you probably wouldn't get it. Neither would I, actually."
+    ], []);
 
   const [textIndex, setTextIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
