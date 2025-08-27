@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Modal from '../components/Modal'
+import TypewriterText from '../components/TypewriterText'
 import { Sparkles, ExternalLink, Copy, Check, Maximize2 } from 'lucide-react';
 
 
@@ -174,75 +176,179 @@ const PromptEnhancerApp = () => {
 
     return (
 
-      <div className='flex justify-center items-start bg-white dark::bg-gray-950 p-2 pt-4'>
-        <div className='w-full max-w-4xl bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden'>
+        <div className='flex justify-center items-start bg-white dark::bg-gray-950 p-2 pt-4'>
+            <div className='w-full max-w-4xl bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden'>
 
-          {/* header */}
+                {/* header */}
 
-          <div className='bg-gradient-to-r from-blue-600 to-indigo-800 px-4 sm:px-6 py-2 sm:py-3 relative'>
-            <div className='flex items-center justify-between'>
-              <h1 className='text-xl sm:text-2xl font-bold text-white'>  AI prompt ENhacer </h1>
-              <Sparkles  className=' text-yellow-300 h-5 w-5 sm:h-6 sm:w-6'/>
-            </div>
-            <h2 className=''> Transform basic prompt into optimized instructions for better AI response</h2>
-          </div>
+                <div className='bg-gradient-to-r from-blue-600 to-indigo-800 px-4 sm:px-6 py-2 sm:py-3 relative'>
+                    <div className='flex items-center justify-between'>
+                        <h1 className='text-xl sm:text-2xl font-bold text-white'>  AI prompt ENhacer </h1>
+                        <Sparkles className=' text-yellow-300 h-5 w-5 sm:h-6 sm:w-6' />
+                    </div>
+                    <h2 className=''> Transform basic prompt into optimized instructions for better AI response</h2>
+                </div>
 
-          {/* Main content */}
+                {/* Main content */}
 
-          <div className='p-2 sm:p-4 flex flex-col'>
-            {/* originalPrompt */}
-            <div className='mb-2'>
-              <div className='flex items-center justify-between mb-1'>
-                <label className='text-sm font-medium text-gray-700 dark:text-gray-300'>Orignal Prompt</label>
-                <MaximizeButton  onClick={()=> setInputModalOpen(true)} 
-                  label='Maximize input'/>
-              </div>
-              <textarea 
-              value={originalPrompt}
-              onChange={(e)=> setOriginalPrompt (e.target.value)}
-              className='w-full h-[70px] sm:h-[80px] p-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-1 focus:ring-gray-500 dark:focus:ring-gray-600 focus:border-gray-500 dark:focus:border-gray-600
+                <div className='p-2 sm:p-4 flex flex-col'>
+                    {/* originalPrompt */}
+                    <div className='mb-2'>
+                        <div className='flex items-center justify-between mb-1'>
+                            <label className='text-sm font-medium text-gray-700 dark:text-gray-300'>Orignal Prompt</label>
+                            <MaximizeButton onClick={() => setInputModalOpen(true)}
+                                label='Maximize input' />
+                        </div>
+                        <textarea
+                            value={originalPrompt}
+                            onChange={(e) => setOriginalPrompt(e.target.value)}
+                            className='w-full h-[70px] sm:h-[80px] p-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-1 focus:ring-gray-500 dark:focus:ring-gray-600 focus:border-gray-500 dark:focus:border-gray-600
               resize-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 text-sm'
-              placeholder='write a blog post about AI -> Detailes , structured guidance for creating an engaging article'/>
-            </div>
+                            placeholder='write a blog post about AI -> Detailes , structured guidance for creating an engaging article' />
+                    </div>
 
-            {/* ENhace Button */}
+                    {/* ENhace Button */}
 
-            <div className=' flex justify-center mb-2'>
-              <button 
-              onClick={enhancePrompt}
-              disabled={isLoading}
-              className='px-3 sm:px-4 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-800 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-150 flex items-center disabled:opacity-50 disabled:cursor-not-allowed text-sm
+                    <div className=' flex justify-center mb-2'>
+                        <button
+                            onClick={enhancePrompt}
+                            disabled={isLoading}
+                            className='px-3 sm:px-4 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-800 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-150 flex items-center disabled:opacity-50 disabled:cursor-not-allowed text-sm
               hover:scale-105 active:scale-95 group'>
 
-                {isLoading ? (
+                            {isLoading ? (
 
-                  <>
-                  <svg className='animate-spin -ml-1 mr-2 h-3 w-3 text-white'
-                  xmlns='http://www.w3.org/2000/svg' fill='none' viewBox=' 0 0 24 24 '>
-                    <circle className='opacity-20' cx="12" cy="12"  r= "10" stroke='currentColor' strokeWidth="4" />
-                    <path className='opacity-74' fill='currentColor' d = 'M4 12a8 8 0 018-8v0c5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'/>
-                  </svg>
-                  Enhancing...
-                  </>
+                                <>
+                                    <svg className='animate-spin -ml-1 mr-2 h-3 w-3 text-white'
+                                        xmlns='http://www.w3.org/2000/svg' fill='none' viewBox=' 0 0 24 24 '>
+                                        <circle className='opacity-20' cx="12" cy="12" r="10" stroke='currentColor' strokeWidth="4" />
+                                        <path className='opacity-74' fill='currentColor' d='M4 12a8 8 0 018-8v0c5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z' />
+                                    </svg>
+                                    Enhancing...
+                                </>
 
-                ): (
-                  <>
-                  <Sparkles  className='mr-1.5 h-3 w-3 sm:h-4 sm:w-4 group-hover:rotate-6 transition-transform duration-300' />
-                  Enhance Prompt 
-                  </>
-                )}
-              </button>
+                            ) : (
+                                <>
+                                    <Sparkles className='mr-1.5 h-3 w-3 sm:h-4 sm:w-4 group-hover:rotate-6 transition-transform duration-300' />
+                                    Enhance Prompt
+
+                                </>
+                            )}
+                        </button>
+                    </div>
+
+                    {error && (
+                        <div className=' mb-2 flex justify-center'>
+                            <div className='px-2 py-1 bg-red-50 dark:bg-red-800/30 text-red-700 dark:text-red-300 rounded-lg flex items-center text-xs'>
+                                <span>{error}</span> </div>
+                        </div>
+
+                    )}
+
+                    {/* enhace prompt result */}
+                    <div className='flex flex-col mt-1'>
+                        {/* enhaced prompt label + action buttons */}
+                        <div className='flex flex-row justify-between items-center mb-1'>
+                            <div className='flex items-center'>
+                                <label className='text-sm font-medium text-gray-700 dark:text-gray-300'>
+                                    Enhanced prompt
+                                </label>
+                            </div>
+
+                            <div className='flex items-center space-x-1 sm:space-x-2'>
+
+                                {/* only show buttons if enhanced prompt exist */}
+                                {enhancePrompt && (
+                                    <>
+                                        <MaximizeButton
+                                            onClick={() => setResultModalOpen(true)}
+                                            label='maximize result' />
+                                        <button
+                                            onClick={copyToClipboard}
+                                            className={`copy-btn action-btn action-btn-ripple text-xs items-center px-1.5 py-0.5 rounded transition-all duration-300
+                            hover:scale-105 active:scale-95 group ${copied ? "copied bg-green-500 text-white" : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"}`}
+                                            aria-label='copy to clipbaord'
+                                            title='copy to clipbaord'>
+
+                                            {copied ? (
+
+                                                <>
+                                                    <Check className='h-3 w-3 mr-1 group-hover: rotate-6 transition-transform duration-300' />
+                                                    <span>Copied !</span>
+                                                </>
+                                            ) : (
+                                                <>
+
+                                                    <Copy className='h-3 w-3 mr-1 group-hover:rotate-6 transition transform duration-300' />
+                                                    <span>Copy</span>
+
+                                                </>
+                                            )
+                                            }
+                                        </button>
+
+                                        <ProviderButton
+                                            onClick={openClaude}
+                                            icon={ExternalLink} >
+                                            claude
+                                        </ProviderButton>
+
+                                        <ProviderButton
+
+                                            onClick={openChatGPT}
+                                            icon={ExternalLink}>
+                                            ChatGPT
+                                        </ProviderButton>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* result area with full corners */}
+
+                        <div className='h-[250px] p-2 mb-2 bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600
+                        rounded-lg whitespace-pre-wrap overflow-y-auto text-gray-800 dark:text-gray-200 text-sm shadow-sm'>
+                            {renderEnhancedPrompt()}
+                        </div>
+                    </div>
+
+                    {/* typewriter Footer */}
+
+                    <div className='mt-1 pt-2 border-t border-b-gray-200 dark:border-gray-700'>
+
+                        <div className='typewriter-wrapper'>
+                            <TypewriterText />
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            {/* ///////////////////////////////////////// */}
+            {/* modal for orignal prompt  */}
 
-          </div>
+            <Modal
+                isOpen={inputModalOpen}
+                onClose={() => setInputModalOpen(false)}
+                title="edit orignal prompt">
+
+                <div className='flex flex-col h-full'>
+
+                    <textarea
+                        value={originalPrompt}
+                        onChange={(e) => setOriginalPrompt(e.target.value)}
+                        className="w-full h-96 p-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-1 focus:ring-gray-500 dark:focus:ring-gray-600 focus:border-gray-500 dark:focus:border-gray-600 resize-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                        placeholder="Write a blog post about AI">
+                    </textarea>
+
+
+                </div>
+
+            </Modal>
+
+
 
         </div>
-
-      </div>
 
     )
 
 
-  }
+}
