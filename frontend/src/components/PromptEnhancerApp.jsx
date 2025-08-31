@@ -339,16 +339,73 @@ const PromptEnhancerApp = () => {
                         placeholder="Write a blog post about AI">
                     </textarea>
 
-
+                    <div className='mt-4 flex justify-end'>
+                        <button onClick={()=> setInputModalOpen(false)}
+                            className='px-4 py-2 bg-gradient-to-r from-blue-600 to bg-indigo-800 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-150'>
+                                Apply Changes 
+                        </button>
+                    </div>
                 </div>
-
             </Modal>
 
+            {/* modal for enhacned prompt */}
 
+            <Modal 
+            isOpen={resultModalOpen}
+            onClose={()=>setResultModalOpen(false)}
+            title="enhanced prompt">
 
+                <div className='flex flex-col h-full'>
+                    <div className='flex justify-end mb-2 space-x-2'>
+                        {enhancePrompt && (
+                            <>
+                            <button onClick={copyToClipboard}
+                            className={`copy-btn action-btn action-btn-ripple text-sm flex items-center px-3 py-1.5 rounded transition-all duration-300 ${copied ? "copied bg-green-500 text-white" :
+                                "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"
+                            }`}
+                            title='copy to clipbaord'>
+
+                                {copied ? (
+                                    <>
+                                    <Check className='h-4 w-4 mr-1.5' />
+                                    <span>Copied!</span>
+                                    </>
+                                ) : (
+                                    <>
+                                    <Copy className='h-4 w-4 mr-1.5'></Copy>
+                                    <span>Copy</span>
+                                    </>
+                                )}
+                            </button>
+                            <button
+                            onClick={openClaude}
+                            className='provider-btn action-btn text-sm flex items-center px-3 py-1.5 rounded transition-all bg-gradient-to-r from-blue-600 to-indigo-800 text-white hover:from-blue-700 hover:to-indigo-900'
+                            title='Open in claude'>
+
+                                <ExternalLink className='h-4 w-4 mr-1.5' />
+                                <span> Claude </span>
+                            </button>
+                            <button
+                            onClick={openChatGPT}
+                            className='provider-btn action-btn text-sm flex items-center px-3 py-1.5 rounded transition-all duration-300 bg-gradient-to-r from-blue-600 to-indigo-800 text-white hover:bg-blue-700 hover:to-indigo-900'
+                            title='open in ChatGPT'>
+                                <ExternalLink className='h-4 w-4 mr-1.5' />
+                                <span>Chatgpt</span>
+
+                            </button>
+                            </>
+                        )}
+                    </div>
+
+                    <div className='bg-gray-50 dark:bg-gray-800 border border-b-gray-300 dark:border-gray-600 rounded-lg p-4 whitespace-pre-wrap overflow-y-auto flex-1 min-h-[400px] text-gray-800 dark:text-gray-200'>
+                        {enhancePrompt || "no enhanced prompt available  yet"}
+                    </div>
+                </div>
+            </Modal>
         </div>
 
     )
 
-
 }
+
+export default PromptEnhancerApp; 
