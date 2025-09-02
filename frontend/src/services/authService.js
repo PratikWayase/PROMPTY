@@ -68,3 +68,46 @@ export const isAuthenticated = () => {
     removeToken ();
     return false;
 }
+
+// fet autheticate token from server 
+
+export const fetchToken = async () => {
+    const apikey = getApiKey();
+
+    if  (!apikey) {
+        console.error("api key is not configure");
+        throw new Error ("api key is not configure")
+    }
+
+    try {
+        console.log("fetch new autht token");
+        const response = await.fetch (`${API_URL}/auth/token`,{
+            method : "POST",
+            Headers : {
+                'content_Type' : "application/json",
+                'X-API-KEY' : apikey
+            },
+            body : JSON.stringify ({
+                clientId : "frontend-client",
+                clientSecret : apikey
+            })
+        })
+
+        const data = await response.json();
+        const token = data.access_token;
+
+        if (!token){
+            throw new Error ( "no token received from server")
+        }
+
+        console.log ("token feteched sucessfully");
+
+        //store token 
+        setToken (token);
+        return token;
+    } catch (error){
+        console.error("authentiation error" ,error)
+        throw error;
+    }
+};
+
