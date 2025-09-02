@@ -111,3 +111,40 @@ export const fetchToken = async () => {
     }
 };
 
+// authentiation by fetch token if need 
+
+export const initializeAuth = async () => {
+    if  (isAuthenticated ()) {
+        console.log("using existed valid token")
+        return getToken ();
+    }
+
+    console.log("no valid token found ")
+
+    try {
+        return await fetchToken ()
+
+    } catch (error){
+
+        console.error ("falied to intillize auth", error)
+
+        // try adter sometime 
+        await new Promise (resolve => setTimeout (resolve,1000));
+        return await fetchToken ();
+
+    }
+}
+
+
+const authService  = {
+    getToken,
+    setToken,
+    removeToken,
+    isAuthenticated,
+    fetchToken,
+    initializeAuth,
+    getApiKey
+}
+
+export default authService ; 
+
