@@ -81,7 +81,7 @@ export const fetchToken = async () => {
 
     try {
         console.log("fetch new autht token");
-        const response = await.fetch (`${API_URL}/auth/token`,{
+        const response = await fetch (`${API_URL}/auth/token`,{
             method : "POST",
             Headers : {
                 'content_Type' : "application/json",
