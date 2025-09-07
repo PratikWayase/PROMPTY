@@ -177,7 +177,7 @@ const apiService = {
         // preaper erequenst data 
 
         const requestData = {
-            text : data.text;
+            text : data.text,
             format : data.format || 'structured'
         };
 
