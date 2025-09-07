@@ -150,8 +150,66 @@ async function apiFetch(url, options = {}) {
 
         } catch (error) {
 
+            // if this our last attempts or thorw 
+
+            if (attempts >= maxAttempts || !isAuthError (error)){
+                throw error
+            }
+
+            await new Promise (resolve => setTimeout(resolve,1000))
+
 
         }
     }
 
+}
+
+
+// api servicies 
+
+const apiService = {
+
+    enhancePrompt : async (data) => {
+        if ( !data.text || typeof data.text !== 'string'){
+            throw new error ('invalid or missing orginal prompt')
+        }
+
+        // preaper erequenst data 
+
+        const requestData = {
+            text : data.text;
+            format : data.format || 'structured'
+        };
+
+        try {
+            console.log("sending prompt enhacement request:", requestData)
+
+            // timeout for enhance promt requenst 
+
+            const response = await apiFetch (`${API_BASE_URL}/prompts`,{
+                method : 'POST',
+                body : requestData
+            })
+            
+        Console.log ('lent promt enhancement response received')
+        return response
+
+        } catch (error){
+            logApiError ('prompt enhacement error',error)
+
+            // more speicifc error message 
+
+            if (error.message.includes ('timeout')){
+                throw new error ('the server took too long to response, your prompt might be too complex for system')
+            }
+            else if (error.message.includes('401')){
+                throw new error ('auth failed. please refersh page')
+
+            }
+            else {
+                throw new error (error.message  || ' failed to enhance prompt . please check your input & try again')
+            }
+        }
+
+    }
 }
