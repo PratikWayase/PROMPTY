@@ -211,5 +211,25 @@ const apiService = {
             }
         }
 
+    },
+
+getPrompts : async (limit = 10 , offeset = 0) => {
+
+    try {
+
+        const url = new URL (`${API_BASE_URL}/prompts`);
+        url.searchParams.append ('limit',limit)
+        url.searchParams.append('offeset',offeset)
+
+        return await apiFetch (url.toString(), {method : "GET"})
+
+    } catch (error){
+        logApiError ('get prompt error', error )
+        throw error
     }
+
 }
+
+}
+
+export default apiService;
