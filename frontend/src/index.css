@@ -1,1 +1,79 @@
 @import "tailwindcss";
+
+
+/* mobile specifiv adjextments*/
+
+@media (max-width : 768px){
+    /* overrid existing body*/
+    body {
+        overflow-y: auto !important;
+        overscroll-behavior-y: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    #root {
+        height: 100vh;
+        overflow-y: auto;
+        overscroll-behavior-y: none;
+    }
+
+    /* responsive test size*/
+    html {
+        font-size: 14px;
+    }
+
+    /* adjust prompt enhace for mobile*/
+    .prompt-enhancer-card {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        height: 100%;
+    }
+
+    /* textarea and result adjust*/
+    .prompt-textarea ,
+    .result-area {
+        font-size: 0.875rem;
+        line-height: 1.4;
+    }
+
+    /* buttom and input size*/
+    button,
+    input,
+    textarea {
+        font-size: 0.875rem;
+        padding: 0.5 rem;
+
+    }
+    /* prevent tex tselection overflow */
+
+    *{
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    textarea,
+    input[type="text"]{
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+    }
+
+    /* scrolling and touch optimzation*/
+
+    *{
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+    }
+
+
+}
